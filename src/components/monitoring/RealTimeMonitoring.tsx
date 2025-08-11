@@ -59,20 +59,24 @@ export default function MqttClient() {
           <p className="text-4xl font-bold text-red-500">
             {message?.temperature ?? "-"}
           </p>
-          <p className="text-xs absolute bottom-3 text-gray-500">Suhu (°C)</p>
+          <p className="text-xs text-gray-500 font-semibold">(°C)</p>
+          <p className="text-xs absolute bottom-3 text-gray-500">Suhu</p>
         </div>
 
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
           <p className="text-4xl font-bold text-green-600">
             {message?.tds ?? "-"}
           </p>
+          <p className="text-xs text-gray-500 font-semibold">ppm</p>
           <p className="text-xs absolute bottom-3 text-gray-500">TDS</p>
         </div>
 
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
+          {/* TAMBAH TEGANGAN AOUT (TEGANGAN SINYAL SENSOR) */}
           <p className="text-4xl font-bold text-purple-600">
             {message?.amonia ?? "-"}
           </p>
+          <p className="text-xs text-gray-500 font-semibold">ppm</p>
           <p className="text-xs absolute bottom-3 text-gray-500">
             Amonia (NH3)
           </p>
