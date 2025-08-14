@@ -43,21 +43,21 @@ export default function MqttClient() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full font-mono">
       <p className="text-center font-mono">{`Status : ${
         message?.classification || "Sensor tidak aktif"
       }`}</p>
       <div className="grid grid-cols-2 gap-4 w-full">
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
           <p className="text-4xl font-bold text-blue-600">
-            {message?.ph ?? "-"}
+            {message?.ph == 0.0 ? "Off" : message?.ph ?? "-"}
           </p>
           <p className="text-xs absolute bottom-3 text-gray-500">pH</p>
         </div>
 
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
           <p className="text-4xl font-bold text-red-500">
-            {message?.temperature ?? "-"}
+            {message?.temperature == -1.0 ? "Off" : message?.temperature ?? "-"}
           </p>
           <p className="text-xs text-gray-500 font-semibold">(°C)</p>
           <p className="text-xs absolute bottom-3 text-gray-500">Suhu</p>
@@ -65,21 +65,27 @@ export default function MqttClient() {
 
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
           <p className="text-4xl font-bold text-green-600">
-            {message?.tds ?? "-"}
+            {message?.tds == -2 || message?.tds == 0
+              ? "Off"
+              : message?.tds ?? "-"}
           </p>
           <p className="text-xs text-gray-500 font-semibold">ppm</p>
-          <p className="text-xs absolute bottom-3 text-gray-500">TDS</p>
+          <div className="text-xs absolute bottom-3 text-gray-500">
+            <p>TDS</p>
+            <p className="-mt-1">(Kekeruhan)</p>
+          </div>
         </div>
 
         <div className="w-full aspect-square relative bg-white shadow-md rounded-full p-4 flex flex-col items-center justify-center text-center">
           {/* TAMBAH TEGANGAN AOUT (TEGANGAN SINYAL SENSOR) */}
           <p className="text-4xl font-bold text-purple-600">
-            {message?.amonia ?? "-"}
+            {message?.amonia == -1 ? "Off" : message?.amonia ?? "-"}
           </p>
           <p className="text-xs text-gray-500 font-semibold">ppm</p>
-          <p className="text-xs absolute bottom-3 text-gray-500">
-            Amonia (NH3)
-          </p>
+          <div className="text-xs absolute bottom-3 text-gray-500">
+            <p>Gas Amonia</p>
+            <p className="-mt-1">(NH3)</p>
+          </div>
         </div>
       </div>
     </div>
